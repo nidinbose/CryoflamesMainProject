@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+
+/* ===== Font 1: Roboto ===== */
+@font-face {
+  font-family: "RobotoCustom";
+  src: url("/fonts/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== Font 2: Demo ===== */
+@font-face {
+  font-family: "DemoFont";
+  src: url("/fonts/demo.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@layer utilities {
+  .font-demo {
+    font-family: "DemoFont", sans-serif;
+  }
+
+  .font-roboto {
+    font-family: "RobotoCustom", sans-serif;
+  }
+}

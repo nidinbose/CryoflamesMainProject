@@ -90,7 +90,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen  bg-[#0b0f0d] text-white overflow-hidden">
+    <div className="relative min-h-screen bg-[#0b0f0d] text-white overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <AnimatePresence>
           <motion.div
@@ -103,80 +103,94 @@ const Landing = () => {
             style={{ backgroundImage: `url(${images[current]})` }}
           />
         </AnimatePresence>
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-60 grid md:grid-cols-2 gap-16 items-center">
-
-        <motion.div variants={fadeUp} initial="hidden" animate="visible">
-          <p className="text-sm tracking-widest text-gray-400 mb-4">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28 lg:py-36 xl:py-60 grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+        
+        <motion.div 
+          variants={fadeUp} 
+          initial="hidden" 
+          animate="visible"
+          className="text-center md:text-left"
+        >
+          <p className="text-xs sm:text-sm tracking-widest text-gray-400 mb-3 sm:mb-4">
             EDUCATE WITH ASTROPHELS
           </p>
 
-          <h1 className="text-5xl font-roboto md:text-6xl font-semibold leading-tight">
-          Empowering minds
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight sm:leading-tight md:leading-tight">
+            Empowering minds
           </h1>
 
-          <h2 className="text-4xl font-demo md:text-5xl font-semibold text-lime-300 mt-4">
-          today to shape a better tomorrow
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light text-lime-300 mt-3 sm:mt-4 leading-tight">
+            today to shape a better tomorrow
           </h2>
 
-          <p className="mt-6  max-w-xl text-gray-300 leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base max-w-xl mx-auto md:mx-0 text-gray-300 leading-relaxed">
             Goodbye generic websites and empty promises. We empower students
             with industry-focused education and future-ready skills.
           </p>
 
-          <div className="mt-10 flex gap-4">
-            <Link to={`/Login`}>
-            <button className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gray-200">
-              <span className="w-2 h-2 bg-green-500 rounded-full" />
-              Apply Now
-            </button>
+          {/* CTA Buttons */}
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <Link to="/Login" className="flex items-center justify-center md:justify-start">
+              <div className="flex items-center gap-2">
+                <button className="flex items-center text-sm sm:text-base md:text-lg gap-2 bg-white text-black px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors">
+                  <span className="w-2 h-2 bg-green-500 rounded-full" />
+                  Apply Now
+                </button>
+                <button className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center border border-white/30 rounded-full bg-white text-black text-lg hover:bg-gray-100 transition-colors">
+                  →
+                </button>
+              </div>
             </Link>
 
-            <button className="border border-white/30 px-6 py-3 rounded-full text-sm hover:bg-white/10">
+            <button className="border border-white/30 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base hover:bg-white/10 transition-colors">
               Explore Courses →
             </button>
           </div>
         </motion.div>
-
         <motion.div
           variants={fromRight}
           initial="hidden"
           animate="visible"
-          className="flex justify-end"
+          className="mt-12 md:mt-0"
         >
           <motion.div
             variants={listContainer}
             initial="hidden"
             animate="visible"
-            className="text-gray-300 space-y-4 text-right text-2xl"
+            className="text-gray-300 space-y-3 sm:space-y-4 text-center md:text-right"
           >
-            <h3 className="text-lime-300 text-xl mb-2">Course Highlights</h3>
+            <h3 className="text-lime-300 text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 md:mb-6 font-medium">
+              Course Highlights
+            </h3>
 
-            {[
-              "Mechanical Engineering",
-              "Civil Engineering",
-              "Automobile Engineering",
-              "Electrical Engineering",
-            ].map((item, index) => (
-              <motion.p
-                key={index}
-                variants={listItem}
-                className="hover:text-lime-300 transition"
-              >
-                • {item}
-              </motion.p>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 sm:gap-4">
+              {[
+                "Mechanical Engineering",
+                "Civil Engineering",
+                "Automobile Engineering",
+                "Electrical Engineering",
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={listItem}
+                  className="hover:text-lime-300 transition-colors duration-300 cursor-pointer group"
+                >
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light">
+                    • <span className="group-hover:pl-2 transition-all duration-300">{item}</span>
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       </div>
-
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
+      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-10">
         <motion.div
           variants={pulse}
           animate="animate"
-          className="relative w-28 h-28 flex items-center justify-center"
+          className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center"
         >
           <motion.div
             variants={slowSpin}
@@ -186,11 +200,11 @@ const Landing = () => {
           <motion.div
             variants={reverseSpin}
             animate="animate"
-            className="absolute inset-4 rounded-full border border-lime-400/40"
+            className="absolute inset-3 sm:inset-4 rounded-full border border-lime-400/40"
           />
           <div className="flex flex-col items-center gap-1 text-gray-300">
-            <span className="text-[10px] tracking-[0.3em]">SCROLL</span>
-            <span className="text-lg animate-bounce">↓</span>
+            <span className="text-[9px] sm:text-[10px] tracking-[0.3em]">SCROLL</span>
+            <span className="text-base sm:text-lg animate-bounce">↓</span>
           </div>
         </motion.div>
       </div>

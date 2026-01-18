@@ -18,6 +18,8 @@ authrouter.route('/updateUserAdditional/:id').put(users.updateAdditionalInfo)
 
 
 authrouter.route('/getStudent/:userId').get(student.getByStudentId)
+authrouter.route('/getStudents').get(student.getAllStudents)
+authrouter.route('/updateStudent/:userId').put(student.updateStudentByUserId)
 
 // payment
 

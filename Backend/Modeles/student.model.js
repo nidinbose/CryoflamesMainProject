@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema(
   {
-    userId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "Auth", required: true },
     image: { type: String, trim: true, default: "" },
     highestQualification: { type: String },
     phone: { type: String, trim: true },

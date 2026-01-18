@@ -3,7 +3,6 @@ import axios from "axios";
 
 const API = "http://localhost:3003/api";
 
-/* -------------------- THUNK -------------------- */
 export const getStudentByUserId = createAsyncThunk(
   "student/getByUserId",
   async (userId, { rejectWithValue }) => {
@@ -11,13 +10,10 @@ export const getStudentByUserId = createAsyncThunk(
       if (!userId) {
         return rejectWithValue("User ID is required");
       }
-
       const res = await axios.get(
         `${API}/getStudent/${userId}`,
         { withCredentials: true }
       );
-
-      // Expected backend response: { message, data }
       return res.data.data;
     } catch (error) {
       console.error("GET STUDENT ERROR:", error);
@@ -31,11 +27,41 @@ export const getStudentByUserId = createAsyncThunk(
   }
 );
 
-/* -------------------- SLICE -------------------- */
+export const getStudent=createAsyncThunk(
+  'admin/getStudent',
+  async(_,{rejectWithValue})=>{
+   try {
+    const res=await axios.get(`${API}/getStudents`)
+    return res.data.data
+   } catch (error) {
+    return rejectWithValue(error.response?.data?.message)
+   }
+  }
+)
+
+export const updateStudentdata = createAsyncThunk(
+  "admin/updateStudent",
+  async ({ userId, data }, { rejectWithValue }) => {
+    try {
+      const res = await axios.put(
+        `${API}/updateStudent/${userId}`,
+        data
+      );
+     
+      return res.data.data; 
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to update student"
+      );
+    }
+  }
+);
+
 const studentSlice = createSlice({
   name: "student",
   initialState: {
     student: null,
+    singleStudent:[],
     loading: false,
     error: null,
   },
@@ -49,28 +75,65 @@ const studentSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      /* ---------- PENDING ---------- */
       .addCase(getStudentByUserId.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
 
-      /* ---------- SUCCESS ---------- */
       .addCase(getStudentByUserId.fulfilled, (state, action) => {
         state.loading = false;
         state.student = action.payload;
         state.error = null;
       })
 
-      /* ---------- ERROR ---------- */
       .addCase(getStudentByUserId.rejected, (state, action) => {
         state.loading = false;
         state.student = null;
         state.error = action.payload;
+      })
+
+      // get
+
+      .addCase(getStudent.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+.addCase(getStudent.fulfilled, (state, action) => {
+  state.loading = false;
+  state.singleStudent = Array.isArray(action.payload)
+    ? action.payload
+    : action.payload.data || []
+})
+
+      .addCase(getStudent.rejected, (state, action) => {
+        state.loading = false;
+        state.student = null;
+        state.error = action.payload;
+      })
+
+      // update
+
+        .addCase(updateStudentdata.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+      .addCase(updateStudentdata.fulfilled, (state, action) => {
+        state.loading = false;
+        state.student = action.payload;
+        state.error = null;
+      })
+
+      .addCase(updateStudentdata.rejected, (state, action) => {
+        state.loading = false;
+        state.student = null;
+        state.error = action.payload;
       });
+      
   },
 });
 
-/* -------------------- EXPORTS -------------------- */
+
 export const { clearStudentState } = studentSlice.actions;
 export default studentSlice.reducer;

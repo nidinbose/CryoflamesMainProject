@@ -66,6 +66,7 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     loading: false,
+     authLoading: true,
     error: null,
     isAuthenticated: false,
   },
@@ -111,15 +112,15 @@ const authSlice = createSlice({
     })
 
       .addCase(getProfile.pending, (state) => {
-        state.loading = true;
+        state.authLoading = true;
       })
       .addCase(getProfile.fulfilled, (state, action) => {
-        state.loading = false;
+         state.authLoading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
       })
      .addCase(getProfile.rejected, (state, action) => {
-  state.loading = false;
+  state.authLoading = false;
   state.user = null;
   state.isAuthenticated = false;
   if (action.payload !== "Unauthorized") {

@@ -117,7 +117,7 @@ const AdminDashboard = () => {
       <aside
         className={`
           fixed md:relative inset-y-0 left-0 z-50 
-          bg-gray-900 text-gray-200 
+          bg-[#2f3834] text-gray-200 
           ${getSidebarWidth()}
           flex flex-col 
           transition-all duration-300 ease-in-out

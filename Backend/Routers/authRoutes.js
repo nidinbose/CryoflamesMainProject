@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as users from '../Countrollers/authCountrollers.js'
 import *as course from '../Countrollers/courseCountrollers.js'
 import * as payment from '../Countrollers/paymentCountroller.js'
+import * as student from '../Countrollers/studentCountroller.js'
 import Auth from '../Middleware/authMiddleware.js'
 const authrouter=Router()
 
@@ -15,6 +16,8 @@ authrouter.route('/getUsersId/:id').get(users.getUserById)
 
 authrouter.route('/updateUserAdditional/:id').put(users.updateAdditionalInfo)
 
+
+authrouter.route('/getStudent/:userId').get(student.getByStudentId)
 
 // payment
 

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API = "http://localhost:3003/api";
+const API = "http://localhost:3003/api"; 
 
 export const enrollCourse = createAsyncThunk(
   "payment/enrollCourse",
@@ -9,12 +9,11 @@ export const enrollCourse = createAsyncThunk(
     try {
       const orderRes = await axios.post(
         `${API}/create-order`,
-        { courseId },
+        { courseId,userId },
         { withCredentials: true }
       );
 
       const { key, amount, orderId } = orderRes.data;
-
       const loadRazorpay = () =>
         new Promise((resolve) => {
           if (window.Razorpay) return resolve(true);
@@ -36,20 +35,26 @@ export const enrollCourse = createAsyncThunk(
           name: "College Management",
           description: "Course Enrollment",
           order_id: orderId,
-          prefill: { name: form.name, email: form.email },
+          prefill: {
+            name: form.name || "",
+            email: form.email || "",
+          },
           theme: { color: "#000000" },
           handler: async (response) => {
             try {
               await axios.post(
                 `${API}/verify-payment`,
                 {
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
                   courseId,
-                  form,
-                  payment: response,
                   userId,
+                  form,
                 },
                 { withCredentials: true }
               );
+
               resolve({ success: true });
             } catch (err) {
               reject(err.response?.data || err.message);
@@ -59,6 +64,7 @@ export const enrollCourse = createAsyncThunk(
             ondismiss: () => reject("Payment cancelled by user"),
           },
         };
+
         const rzp = new window.Razorpay(options);
         rzp.open();
       });
@@ -72,29 +78,31 @@ const paymentSlice = createSlice({
   name: "payment",
   initialState: {
     loading: false,
-    error: null,
     success: false,
+    error: null,
   },
   reducers: {
     resetPaymentState: (state) => {
       state.loading = false;
-      state.error = null;
       state.success = false;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(enrollCourse.pending, (state) => {
         state.loading = true;
-        state.error = null;
         state.success = false;
+        state.error = null;
       })
       .addCase(enrollCourse.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
+        state.error = null;
       })
       .addCase(enrollCourse.rejected, (state, action) => {
         state.loading = false;
+        state.success = false;
         state.error = action.payload || "Payment failed";
       });
   },

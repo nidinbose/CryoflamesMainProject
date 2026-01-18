@@ -129,12 +129,12 @@ const AdminDashboard = () => {
         <div className="p-5 sm:p-6 border-b border-gray-700">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center border border-gray-700">
-                <FaUser className="text-gray-300" />
+              <div className="w-10 h-10 rounded-full  flex items-center justify-center border border-gray-100">
+                <FaUser className="text-white" />
               </div>
               <div>
                 <h1 className="text-xl font-bold tracking-tight text-white">Admin Panel</h1>
-                <p className="text-gray-400 text-xs sm:text-sm mt-1">Welcome, {user?.name}</p>
+                <p className="text-gray-100 text-xs sm:text-sm mt-1">Welcome, {user?.name}</p>
               </div>
             </div>
             {(isSmallScreen || isMediumScreen) && (

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import Student from "../Modeles/student.model.js";
-import Course from "../Modeles/course.model.js";
+import Auth from "../Modeles/auth.model.js";
 
 export async function getByStudentId(req, res) {
   try {
@@ -63,37 +63,49 @@ export async function getByStudentId(req, res) {
 }
 
 
+
 export async function updateStudentByUserId(req, res) {
   try {
     const { userId } = req.params;
     const updateData = req.body;
 
-    if (!userId) {
-      return res.status(400).json({ message: "userId required" });
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
+    if (!userId) return res.status(400).json({ message: "userId required" });
+    if (!mongoose.Types.ObjectId.isValid(userId))
       return res.status(400).json({ message: "Invalid userId" });
-    }
 
+    // 1️⃣ Extract Auth fields and Student fields separately
+    const { name, email, status, ...studentData } = updateData;
+
+    // 2️⃣ Update Student fields
     const updatedStudent = await Student.findOneAndUpdate(
       { userId },
-      { $set: updateData },
+      { $set: studentData },
       { new: true, runValidators: true }
-    ).populate({
+    );
+
+    if (!updatedStudent)
+      return res.status(404).json({ message: "Student not found" });
+
+    // 3️⃣ Update Auth fields if provided
+    if (name || email || status) {
+      await Auth.findByIdAndUpdate(
+        updatedStudent.userId,
+        { $set: { ...(name && { name }), ...(email && { email }), ...(status && { status }) } },
+        { new: true, runValidators: true }
+      );
+    }
+
+    // 4️⃣ Populate userId for final response
+    const populatedStudent = await Student.findById(updatedStudent._id).populate({
       path: "userId",
       model: "Auth",
       select: "name email accessId status",
     });
 
-    if (!updatedStudent) {
-      return res.status(404).json({ message: "Student not found" });
-    }
-
     return res.status(200).json({
       success: true,
       message: "Student updated successfully",
-      data: updatedStudent,
+      data: populatedStudent,
     });
   } catch (error) {
     console.error("UPDATE STUDENT ERROR:", error);
@@ -103,7 +115,6 @@ export async function updateStudentByUserId(req, res) {
     });
   }
 }
-
 
 
 export async function deleteStudentByUserId(req, res) {

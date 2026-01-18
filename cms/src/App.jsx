@@ -24,6 +24,7 @@ import CoursesAdmin from "./Components/AdminComponents/CoursesAdmin";
 import StudentsAdmin from "./Components/AdminComponents/StudentsAdmin";
 import ViewStudent from "./Components/AdminComponents/ViewStudent";
 import AddAdmin from "./Components/AdminComponents/AddAdmin";
+import EditUserProfile from './Components/Dashboards/EditUserProfile'
 
 import Enroll from "./Components/Payments/Enroll";
 import CoursePage from "./Components/Pages/CoursesPage/CoursePage";
@@ -108,6 +109,15 @@ const Layout = () => {
           element={
             <AdminRoute>
               <ViewStudent />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/EditProfile/:userId"
+          element={
+            <AdminRoute>
+             <EditUserProfile/>
             </AdminRoute>
           }
         />

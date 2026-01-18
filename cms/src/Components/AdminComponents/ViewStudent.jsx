@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate,Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getStudentByUserId,
@@ -49,7 +49,7 @@ const ViewStudent = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center">
+      <div className="min-h-screen  flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <h3 className="text-xl font-semibold text-gray-700">Loading Student Profile</h3>
@@ -61,7 +61,7 @@ const ViewStudent = () => {
 
   if (error && !student) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center">
+      <div className="min-h-screen  flex items-center justify-center">
         <div className="bg-white p-8 rounded-xl shadow-lg max-w-md">
           <div className="text-red-500 text-center">
             <XCircle className="w-16 h-16 mx-auto mb-4" />
@@ -81,7 +81,7 @@ const ViewStudent = () => {
 
   if (!student) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center">
+      <div className="min-h-screen  flex items-center justify-center">
         <div className="bg-white p-8 rounded-xl shadow-lg max-w-md">
           <div className="text-center">
             <User className="w-16 h-16 mx-auto mb-4 text-gray-400" />
@@ -182,8 +182,7 @@ const ViewStudent = () => {
           
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 flex items-center gap-3">
-                <GraduationCap className="text-blue-600" />
+              <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 flex items-center gap-3">
                 Student Profile
               </h1>
               <p className="text-gray-600 mt-2">View detailed information about the student</p>
@@ -195,12 +194,9 @@ const ViewStudent = () => {
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          {/* Profile Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-8">
+          <div className="bg-[#2f3834] p-8">
             <div className="flex flex-col lg:flex-row items-center gap-8">
-              {/* Profile Image */}
               <div className="relative">
                 <img
                   src={student.image || "/default-profile.png"}
@@ -208,39 +204,38 @@ const ViewStudent = () => {
                   className="w-36 h-36 rounded-full border-4 border-white shadow-lg object-cover"
                 />
                 <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-2 shadow-lg">
-                  <User className="w-6 h-6 text-blue-600" />
+                  <User className="w-6 h-6 text-[#2f3834]" />
                 </div>
               </div>
 
-              {/* Student Info */}
               <div className="text-center lg:text-left flex-1">
                 <h2 className="text-3xl lg:text-4xl font-bold text-white mb-2">
                   {student.userId?.name}
                 </h2>
                 <p className="text-blue-100 text-lg mb-4 flex items-center justify-center lg:justify-start gap-2">
-                  <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  <span className=" backdrop-blur-sm px-3 py-1 rounded-full">
                     ID: {student.userId?.accessId}
                   </span>
                 </p>
                 
                 <div className="flex flex-wrap gap-4 mt-6 justify-center lg:justify-start">
                   <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 min-w-[140px]">
-                    <p className="text-blue-100 text-sm">Course</p>
-                    <p className="text-white font-semibold text-lg">
+                    <p className="text-blue-100 text-xs">Course</p>
+                    <p className="text-white font-semibold text-sm">
                       {student.course?.courseName || "Not Assigned"}
                     </p>
                   </div>
                   
                   <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 min-w-[140px]">
-                    <p className="text-blue-100 text-sm">Qualification</p>
-                    <p className="text-white font-semibold text-lg">
+                    <p className="text-blue-100 text-xs">Qualification</p>
+                    <p className="text-white font-semibold text-sm">
                       {student.highestQualification || "N/A"}
                     </p>
                   </div>
                   
                   <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 min-w-[140px]">
-                    <p className="text-blue-100 text-sm">Amount Paid</p>
-                    <p className="text-white font-semibold text-lg">
+                    <p className="text-blue-100 text-xs">Amount Paid</p>
+                    <p className="text-white font-semibold text-sm">
                       ₹{student.payment?.amountPaid?.toLocaleString() || "0"}
                     </p>
                   </div>
@@ -248,17 +243,11 @@ const ViewStudent = () => {
               </div>
             </div>
           </div>
-
-          {/* Details Section */}
           <div className="p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Personal Information */}
               <div className="space-y-6">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-blue-100 p-2 rounded-lg">
-                    <User className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Personal Information</h3>
+                  <h3 className="text-2xl font-semibold text-gray-900">Personal Information</h3>
                 </div>
 
                 <div className="space-y-4">
@@ -301,14 +290,9 @@ const ViewStudent = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Academic Information */}
               <div className="space-y-6">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-green-100 p-2 rounded-lg">
-                    <BookOpen className="w-6 h-6 text-green-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Academic Information</h3>
+                <div className="flex items-center gap-3 mb-6">             
+                  <h3 className="text-2xl font-semibold text-gray-900">Academic Information</h3>
                 </div>
 
                 <div className="space-y-4">
@@ -354,14 +338,9 @@ const ViewStudent = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Address Information - Full Width */}
               <div className="lg:col-span-2 space-y-6">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-purple-100 p-2 rounded-lg">
-                    <Home className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Address Information</h3>
+                  <h3 className="text-2xl font-semibold text-gray-900">Address Information</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -416,13 +395,10 @@ const ViewStudent = () => {
               </div>
             </div>
 
-            {/* Additional Info Section */}
             <div className="mt-12 pt-8 border-t border-gray-200">
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-yellow-100 p-2 rounded-lg">
-                  <AlertCircle className="w-6 h-6 text-yellow-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Additional Information</h3>
+            
+                <h3 className="text-2xl font-semibold text-gray-900">Additional Information</h3>
               </div>
               
               <div className="bg-gray-50 rounded-xl p-6">
@@ -454,7 +430,7 @@ const ViewStudent = () => {
                     <div className="mt-2">
                       <div className="w-full bg-gray-200 rounded-full h-2.5">
                         <div 
-                          className="bg-blue-600 h-2.5 rounded-full" 
+                          className="bg-[#2f3834] h-2.5 rounded-full" 
                           style={{ width: '85%' }}
                         ></div>
                       </div>
@@ -467,7 +443,6 @@ const ViewStudent = () => {
           </div>
         </div>
 
-        {/* Footer Actions */}
         <div className="mt-8 flex justify-between items-center">
           <div className="text-sm text-gray-500">
             Student ID: <span className="font-medium text-gray-700">{student.userId?.accessId}</span>
@@ -479,12 +454,14 @@ const ViewStudent = () => {
             >
               Back to List
             </button>
+        <Link to={`/admin/EditProfile/${student.userId._id}`}>
             <button
-              onClick={() => window.print()}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors"
+            
+              className="px-6 py-3 bg-[#2f3834] text-white rounded-lg  font-medium transition-colors"
             >
-              Print Profile
+              Edit profile
             </button>
+        </Link>
           </div>
         </div>
       </div>

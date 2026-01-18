@@ -117,7 +117,7 @@ const AdminDashboard = () => {
       <aside
         className={`
           fixed md:relative inset-y-0 left-0 z-50 
-          bg-[#2f3834] text-gray-200 
+          bg-[#2f3834] text-gray-100 
           ${getSidebarWidth()}
           flex flex-col 
           transition-all duration-300 ease-in-out
@@ -202,10 +202,7 @@ const AdminDashboard = () => {
 
         {(isMediumScreen && !sidebarOpen) ? null : (
           <div className="p-4 border-t border-gray-700">
-            <div className="text-xs text-gray-400 text-center">
-              <p>© 2024 • v1.0.0</p>
-              <p className="mt-1">Admin Dashboard</p>
-            </div>
+            
           </div>
         )}
       </aside>
@@ -376,12 +373,7 @@ const AdminDashboard = () => {
                               )}
                               {u.status === "approved" && (
                                 <>
-                                  <ActionButton 
-                                    text="View" 
-                                    variant="primary"
-                                    onClick={() => navigate(`/admin/users/${u._id}`)}
-                                    size="sm"
-                                  />
+                                
                                   <ActionButton 
                                     text="Block" 
                                     variant="warning"

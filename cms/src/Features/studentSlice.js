@@ -57,11 +57,25 @@ export const updateStudentdata = createAsyncThunk(
   }
 );
 
+export const getPayments=createAsyncThunk(
+  'admin/payments',
+  async(_,{rejectWithValue})=>{
+    try {
+      const res=await axios.get(`${API}/getPayments`)
+      return res.data.data
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message)
+    }
+  }
+)
+
+
 const studentSlice = createSlice({
   name: "student",
   initialState: {
     student: null,
     singleStudent:[],
+    payments:[],
     loading: false,
     error: null,
   },
@@ -129,8 +143,26 @@ const studentSlice = createSlice({
         state.loading = false;
         state.student = null;
         state.error = action.payload;
-      });
-      
+      })
+
+      // payment
+            .addCase(getPayments.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+.addCase(getPayments.fulfilled, (state, action) => {
+  state.loading = false;
+  state.payments = Array.isArray(action.payload)
+    ? action.payload
+    : action.payload.data || []
+})
+
+      .addCase(getPayments.rejected, (state, action) => {
+        state.loading = false;
+        state.student = null;
+        state.error = action.payload;
+      })
   },
 });
 

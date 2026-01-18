@@ -72,11 +72,7 @@ export async function updateStudentByUserId(req, res) {
     if (!userId) return res.status(400).json({ message: "userId required" });
     if (!mongoose.Types.ObjectId.isValid(userId))
       return res.status(400).json({ message: "Invalid userId" });
-
-    // 1️⃣ Extract Auth fields and Student fields separately
     const { name, email, status, ...studentData } = updateData;
-
-    // 2️⃣ Update Student fields
     const updatedStudent = await Student.findOneAndUpdate(
       { userId },
       { $set: studentData },
@@ -85,8 +81,6 @@ export async function updateStudentByUserId(req, res) {
 
     if (!updatedStudent)
       return res.status(404).json({ message: "Student not found" });
-
-    // 3️⃣ Update Auth fields if provided
     if (name || email || status) {
       await Auth.findByIdAndUpdate(
         updatedStudent.userId,
@@ -94,8 +88,6 @@ export async function updateStudentByUserId(req, res) {
         { new: true, runValidators: true }
       );
     }
-
-    // 4️⃣ Populate userId for final response
     const populatedStudent = await Student.findById(updatedStudent._id).populate({
       path: "userId",
       model: "Auth",
@@ -138,6 +130,40 @@ export async function deleteStudentByUserId(req, res) {
     });
   } catch (error) {
     console.error("DELETE STUDENT ERROR:", error);
+    return res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+}
+
+
+export async function getAllPayments(req, res) {
+  try {
+    const students = await Student.find({})
+      .populate({
+        path: "userId",
+        model: "Auth",
+        select: "name email",
+      });
+
+    if (!students.length)
+      return res.status(404).json({ message: "No students found" });
+
+    const paymentData = students.map((s) => ({
+      userId: s.userId._id,
+      name: s.userId.name,
+      email: s.userId.email,
+      payment: s.payment,
+    }));
+
+    return res.status(200).json({
+      success: true,
+      message: "Payments fetched successfully",
+      data: paymentData,
+    });
+  } catch (error) {
+    console.error("GET ALL PAYMENTS ERROR:", error);
     return res.status(500).json({
       message: "Internal server error",
       error: error.message,

@@ -1,39 +1,48 @@
-import React from 'react';
+import React,{useEffect}from 'react';
 
 const certificationsData = [
   {
     title: "Advanced AI & Machine Learning",
     authority: "Coursera",
     date: "March 2025",
-    image: "https://images.unsplash.com/photo-1581091012184-5f0e4f5d52e4?auto=format&fit=crop&w=400&q=60"
+    image: "https://m.media-amazon.com/images/I/71Uds859DZL._AC_UF1000,1000_QL80_.jpg"
   },
   {
     title: "Full Stack Web Development",
     authority: "Udemy",
     date: "January 2025",
-    image: "https://images.unsplash.com/photo-1581091215366-0f031e9c632e?auto=format&fit=crop&w=400&q=60"
+    image: "https://codingbytes.com/wp-content/uploads/2022/03/full-stack-web-development.jpg"
   },
   {
     title: "Cybersecurity Fundamentals",
     authority: "edX",
     date: "December 2024",
-    image: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=400&q=60"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzgLSbmgYxJMTJcUwssl1hmgjJjLsURQsWjg&s"
   },
   {
     title: "Cloud Computing Essentials",
     authority: "Coursera",
     date: "November 2024",
-    image: "https://images.unsplash.com/photo-1581092580496-78c54f452622?auto=format&fit=crop&w=400&q=60"
+    image: "https://bernardmarr.com/img/The%205%20Biggest%20Cloud%20Computing%20Trends%20In%202021.jpg"
   },
   {
     title: "Data Science with Python",
     authority: "Udemy",
     date: "October 2024",
-    image: "https://images.unsplash.com/photo-1581091012184-5f0e4f5d52e4?auto=format&fit=crop&w=400&q=60"
+    image: "https://cdn.shopaccino.com/igmguru/articles/Career-In-Data-Science.webp?v=546"
+  },
+    {
+    title: "devops",
+    authority: "Udemy",
+    date: "October 2024",
+    image: "https://devopedia.org/images/article/54/7602.1513404277.png"
   }
 ];
 
 const Certification = () => {
+    useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
   return (
     <div className="bg-gray-50 py-16 mt-6">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">

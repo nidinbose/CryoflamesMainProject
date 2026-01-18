@@ -1,7 +1,11 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
 
 const Contact = () => {
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
+
   return (
     <div className="bg-gray-100 py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-8">

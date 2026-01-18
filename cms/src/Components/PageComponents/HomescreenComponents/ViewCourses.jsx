@@ -16,6 +16,9 @@ const ViewCourses = () => {
   useEffect(() => {
     if (id) dispatch(getCourseById(id));
   }, [dispatch, id]);
+useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
 
   const handleEnroll = () => {
     if (!isAuthenticated || !loggedInUser) {

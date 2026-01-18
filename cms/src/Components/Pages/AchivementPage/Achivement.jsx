@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import { FaTrophy, FaBriefcase, FaLightbulb, FaFootballBall, FaTheaterMasks } from 'react-icons/fa';
 import Awards from '../../PageComponents/HomescreenComponents/Awards';
 
@@ -31,6 +31,9 @@ const achievementsData = [
 ];
 
 const Achivement = () => {
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
    <div>
     <Awards/>

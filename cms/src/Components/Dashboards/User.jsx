@@ -138,12 +138,7 @@ const UserDashboard = () => {
               </div>
               
               <div className="flex items-center gap-4">
-                 <button
-                  onClick={() => navigate( `/editProfile/${userId}`)}
-                  className="px-5 py-2.5 rounded-xl bg-white text-[#2f3834]  font-light border border-[#2f3834]  hover:bg-[#2f3834]  hover:text-white hover:shadow-md transition-all"
-                >
-                  Edit My Profile
-                </button>
+          
                 <button
                   onClick={() => navigate("/courses")}
                   className="px-5 py-2.5 rounded-xl bg-white text-[#2f3834]  font-light border border-[#2f3834]  hover:bg-[#2f3834]  hover:text-white hover:shadow-md transition-all"

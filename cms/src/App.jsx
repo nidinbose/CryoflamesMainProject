@@ -7,8 +7,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-/* Pages & Components */
 import Homescreen from "./Components/Pages/Homescreen/Homescreen";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
@@ -34,6 +32,7 @@ import Certification from "./Components/Pages/CertificationPage/Certification";
 import Contact from "./Components/Pages/ContactPage/Contact";
 
 import { getProfile } from "./Features/authSlice";
+import Payments from "./Components/AdminComponents/Payments";
 
 const AdminRoute = ({ children }) => {
   const { user, isAuthenticated, authLoading } = useSelector(
@@ -118,6 +117,14 @@ const Layout = () => {
           element={
             <AdminRoute>
              <EditUserProfile/>
+            </AdminRoute>
+          }
+        />
+           <Route
+          path="/admin/payments"
+          element={
+            <AdminRoute>
+            <Payments/>
             </AdminRoute>
           }
         />

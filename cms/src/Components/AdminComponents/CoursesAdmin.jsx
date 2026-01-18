@@ -97,10 +97,10 @@ const CoursesAdmin = () => {
     <div className="p-8 space-y-8">
 
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Courses Management</h1>
+        <h1 className="text-3xl font-semibold">Courses Management</h1>
         <button
           onClick={openAddModal}
-          className="bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800"
+          className="bg-[#2f3834] text-white px-6 py-3 rounded-xl hover:bg-gray-800"
         >
           + Add Course
         </button>
@@ -108,7 +108,7 @@ const CoursesAdmin = () => {
 
       <div className="bg-white rounded-2xl shadow overflow-x-auto">
         <table className="w-full text-left">
-          <thead className="bg-gray-100 text-sm uppercase">
+          <thead className="bg-[#2f3834] text-white text-sm ">
             <tr>
               <th className="p-4">Image</th>
               <th className="p-4">Title</th>
@@ -136,13 +136,13 @@ const CoursesAdmin = () => {
                 <td className="p-4 flex gap-3">
                   <button
                     onClick={() => openEditModal(course)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm"
+                    className="px-4 py-2 bg-[#2f3834] text-white rounded-lg text-sm"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(course._id)}
-                    className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm"
+                    className="px-4 py-2 hover:bg-red-600 bg-[#2f3834] text-white rounded-lg text-sm"
                   >
                     Delete
                   </button>

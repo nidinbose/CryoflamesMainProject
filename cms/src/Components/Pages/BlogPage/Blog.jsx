@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 
 const blogsData = [
   {
@@ -46,6 +46,9 @@ const blogsData = [
 ];
 
 const Blog = () => {
+    useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
   return (
     <div className="bg-gray-50 py-16 mt-7">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">

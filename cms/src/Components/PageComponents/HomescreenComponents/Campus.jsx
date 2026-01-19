@@ -20,12 +20,12 @@ const Campus = () => {
         
         <div className="max-w-xl">
           <h1 className="text-4xl font-bold mb-4 flex items-center text-gray-900">
-            <FaGripLinesVertical className="text-lime-500 text-3xl mr-3" />
+            <FaGripLinesVertical className="text-[#2f3834] text-3xl mr-3" />
             Our Gallery
           </h1>
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Explore The Campus</h2>
           <p className="text-gray-700 leading-relaxed">
-            Students at <span className='text-lime-500 font-bold'>Astrophels Institutions</span> are privy to a unique Wi-Fi campus. The Wi-Fi campus enables
+            Students at <span className='text-[#2f3834] font-bold'>Astrophels Institutions</span> are privy to a unique Wi-Fi campus. The Wi-Fi campus enables
             students to get online anywhere on campus without the hassle of wires and plug-ins. The campus truly represents the high-tech face of the new age.
           </p>
         </div>

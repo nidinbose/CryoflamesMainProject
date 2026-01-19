@@ -130,7 +130,7 @@ export async function userLogin(req, res) {
     if (["pending", "rejected", "blocked"].includes(user.status)) {
       return res.status(403).json({
         success: false,
-        message: `Your account is ${user.status}`,
+        message: `Your account is ${user.status} need admin approvel`,
       });
     }
 

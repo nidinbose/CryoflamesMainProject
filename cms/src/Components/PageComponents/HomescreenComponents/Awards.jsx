@@ -4,12 +4,11 @@ import { motion } from "framer-motion";
 const awards = [
   { id: "01", label: "Years of Services", value: "05", highlight: true },
   { id: "02", label: "Number of Awards", value: "08" },
-  { id: "03", label: "Creative Minds", value: "50+" },
+  { id: "03", label: "Certifications", value: "50+" },
   { id: "04", label: "Years of Experience", value: "11" },
-  { id: "05", label: "Satisfied Clients", value: "200+" },
+  { id: "05", label: "Satisfied Students", value: "200+" },
 ];
 
-// Animation variants
 const container = {
   hidden: {},
   visible: {

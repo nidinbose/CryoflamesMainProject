@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser';
 import rateLimiter from 'express-rate-limit';
 import connection from './Connection/mongoConnection.js';
 import authrouter from './Routers/authRoutes.js';
+import studentRoute from './Routers/studentRoute.js';
+import paymentRoute from './Routers/paymentRoute.js';
+import courseRoute from './Routers/courseRoute.js';
 
 
 const app=express();
@@ -26,7 +29,7 @@ const limiter=rateLimiter({
   message:"Too many requests try again later"
 })
 app.use(limiter)
-app.use(`/api`,authrouter)
+app.use(`/api`,authrouter,studentRoute,paymentRoute,courseRoute)
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

@@ -13,21 +13,21 @@ const blogsData = [
     date: "December 22, 2025",
     author: "Admin",
     summary: "Astrophels Engineering College won first place in the National Cultural Fest, with performances across music, dance, and drama.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60"
+    image: "https://onlinedegrees.sandiego.edu/wp-content/uploads/2023/05/teaching-blog.jpg"
   },
   {
     title: "Campus Wi-Fi Upgrade",
     date: "November 15, 2025",
     author: "Admin",
     summary: "The entire campus now has high-speed Wi-Fi connectivity, enabling students to work seamlessly across all devices.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60"
+    image: "https://static.youngpostclub.com/article_image/sites/default/files/d8/yp/images/shutterstock_594171068.jpg?image_process=image/resize,w_3840/quality,Q_75"
   },
   {
     title: "Sports Championship Victory",
     date: "October 10, 2025",
     author: "Admin",
     summary: "Astrophels students won the inter-college football and cricket championships, demonstrating exceptional teamwork and skills.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60"
+    image: "https://myschool-assets.s3.ap-south-1.amazonaws.com/all_media/YIm5dzQjKn0hj6n48yhGhoUgtGNPe50lvS6Do00d.webp"
   },
   {
     title: "Guest Lecture Series 2025",
@@ -41,7 +41,7 @@ const blogsData = [
     date: "September 5, 2025",
     author: "Admin",
     summary: "Industry leaders conducted interactive sessions for students, covering topics on AI, Blockchain, and Emerging Technologies.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=60"
+    image: "https://itmddn.in/images/news/image__tcsion-blog2.jpg"
   }
 ];
 
